@@ -25,6 +25,7 @@ import com.fluttercandies.photo_manager.util.ResultHandler
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import androidx.annotation.NonNull
 
 class PhotoManagerPlugin(
     private val applicationContext: Context,
@@ -77,7 +78,7 @@ class PhotoManagerPlugin(
 
     private var ignorePermissionCheck = false
 
-    override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: MethodChannel.Result) {
         val resultHandler = ResultHandler(result, call)
         if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q && !Environment.isExternalStorageLegacy()) {
             resultHandler.replyError(
